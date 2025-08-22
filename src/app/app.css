@@ -1,0 +1,215 @@
+.whole-container {
+    width: 100%;
+    position: relative;
+}
+.sidebar {
+    width: 100%;
+}
+.keep-notes {
+    padding-top: 30px;
+    background-color: black;
+    width: 100%;
+    min-height: 100vh;
+    /* padding: 20px 20px; */
+    /* margin: 0; */
+}
+
+.upper {
+    display: flex;
+    justify-content: center;
+}
+
+.create-container {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid grey;
+    width: 550px;
+    height: 45px;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+}
+
+.start-typing {
+    border: 1px solid grey;
+    width: 550px;
+    height: 200px;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    position: relative;
+}
+.create {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border: none;   
+    color: grey;
+    background-color: black;
+    width: 420px;
+
+}
+.create:focus {
+    border: none;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.note {
+    border: none;
+    background-color: black;
+    width: 100%;
+    color: white;
+    resize: none;
+    overflow: hidden;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    bottom: 10px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    padding: 0px 10px;
+}
+
+.footer-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.close {
+    font-size: 15px;
+}
+input:focus,
+textarea:focus, .card-title:focus, .card-text:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.display-area {
+    margin-top: 20px;
+    
+
+}
+.note-card {
+    background-color: black;
+    width: 185px;
+    height: auto;
+    max-height: 500px;
+    overflow-y: auto;
+    border-radius: 10px;
+    /* padding: 10px; */
+    color: white;
+    margin-bottom: 20px;
+    border: 1px solid grey;
+    cursor:text;
+    position: relative;
+    overflow: visible;
+}
+
+.mark {
+    position: absolute;
+    top: -8px;
+    left: -10px;
+    background-color: white;
+    border-radius: 50%;
+    display: none;
+}
+
+.card-icons {
+    display: none;
+    cursor: pointer;
+}
+
+.note-card:hover .mark {
+    display: block;
+}
+.note-card:hover .card-icons {
+    display: flex;
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.card-text {
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: white;
+    padding: 10px 12px;
+    position: absolute;
+    top: 22px;
+    font-size: 12px;
+    left: 90px;
+    z-index: 10;
+    gap: 4px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.edit-container {
+    display: flex;
+    justify-content: center;
+    /* overflow: hidden; */
+    width: 100%;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+.edit-card {
+    position: absolute;
+    top: 0;
+    top: 50px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.edit-inner-card {
+    background-color: black;
+    width: 400px;
+    height: auto;
+    overflow-y: auto;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid grey;
+    cursor:text;
+    position: relative;
+    overflow: visible;
+}
+
+.close-edit {
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: -12px;
+}
+
+.edit-footer {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.card-text {
+    margin-bottom: 30px;
+}
