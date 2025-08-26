@@ -62,7 +62,7 @@
 
 .note {
     border: none;
-    background-color: black;
+    /* background-color: black; */
     width: 100%;
     color: white;
     resize: none;
@@ -82,7 +82,30 @@
 .footer-icons {
     display: flex;
     gap: 10px;
+    position: relative;
 }
+
+.canvas {
+    position: absolute;
+    z-index: 1;
+    width: 380px;
+    height: 100px;
+    background-color: #202124;
+    display: none;
+    top: 18px;
+    left: 40px;
+    border-radius: 5px;
+    padding: 10px 5px;
+
+}
+
+.canvas div {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+
 
 .close {
     font-size: 15px;
@@ -93,6 +116,8 @@ textarea:focus, .card-title:focus, .card-text:focus {
     box-shadow: none;
     border-color: transparent;
 }
+
+
 
 .display-area {
     margin-top: 20px;
@@ -213,3 +238,8 @@ textarea:focus, .card-title:focus, .card-text:focus {
 .card-text {
     margin-bottom: 30px;
 }
+
+.pinned-title {
+    color: #959a9b;
+}
+
