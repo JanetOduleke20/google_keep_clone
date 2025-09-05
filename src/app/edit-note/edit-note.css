@@ -1,0 +1,28 @@
+.edit-card {
+    width: 500px;
+    /* height: auto; */
+    border-radius: 15px;
+    background-color: #202124;
+    border: 1px solid white;
+    padding: 15px 12px;
+    color: white;
+}
+
+.title:focus, .note:focus {
+    outline: none;
+    border-color: transparent;
+}
+
+.title, .note {
+    background: none;
+    width: 100%;
+    color: white;
+    border: none;
+}
+
+.edit-container {
+    height: 90vh;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}

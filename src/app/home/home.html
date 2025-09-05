@@ -1,0 +1,188 @@
+<!-- <div class="whole-container"> -->
+<!-- <div class="sidebar col-12 col-md-4"></div> -->
+
+<div class="keep-notes px-5">
+
+  <div class="upper">
+  @if (new_note==="") {
+    <div class="create-container">  
+      <div>
+        <input type="text" class="create" placeholder="Take a note..." [(ngModel)]="new_note" (focus)="startTyping()">
+      </div>
+      <div class="d-flex gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">
+          <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+          <path d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="grey" d="M7.061 22c1.523 0 2.84-.543 3.91-1.613c1.123-1.123 1.707-2.854 1.551-4.494l8.564-8.564a3.123 3.123 0 0 0-.002-4.414c-1.178-1.18-3.234-1.18-4.412 0l-8.884 8.884c-1.913.169-3.807 1.521-3.807 3.919c0 .303.021.588.042.86c.08 1.031.109 1.418-1.471 2.208a1 1 0 0 0-.122 1.717C2.52 20.563 4.623 22 7.061 22q-.002 0 0 0M18.086 4.328a1.144 1.144 0 0 1 1.586.002a1.12 1.12 0 0 1 0 1.584L12 13.586L10.414 12zM6.018 16.423c-.018-.224-.037-.458-.037-.706c0-1.545 1.445-1.953 2.21-1.953c.356 0 .699.073.964.206c.945.475 1.26 1.293 1.357 1.896c.177 1.09-.217 2.368-.956 3.107C8.865 19.664 8.049 20 7.061 20H7.06c-.75 0-1.479-.196-2.074-.427c1.082-.973 1.121-1.989 1.032-3.15"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="grey" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><circle cx="16" cy="8" r="2"/><path stroke-linecap="round" d="m2 12.5l1.752-1.533a2.3 2.3 0 0 1 3.14.105l4.29 4.29a2 2 0 0 0 2.564.222l.299-.21a3 3 0 0 1 3.731.225L21 18.5"/></g></svg>
+      </div>
+    </div>
+    }@else {
+      <div class="start-typing" id="startTyping" [style]="{'background-color': noteBackground, 'background-image': `url('assets/${noteBgImage}')`}" style="background-repeat: no-repeat; background-size: 100%; background-position: center;">
+        <div class="title">
+          <input type="text" class="note fw-medium fs-5" placeholder="Title" [(ngModel)]="title" (keyup)="enterPressed($event)" style="background: none;" >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="grey" d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2zm-7.2 2l1.2-1.2V4h4v8.8l1.2 1.2z"/></svg>
+        </div>
+        <div class="">
+          <textarea name="" id="noteArea" placeholder="Take a note..." class="note" [(ngModel)]="new_note" (input)="autoExpand($event)" style="background: none;"></textarea>
+        </div>
+
+        <div class="footer">
+          <div class="footer-icons">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="grey" d="M15.246 14H8.754l-1.6 4H5l6-15h2l6 15h-2.154zm-.8-2L12 5.885L9.554 12zM3 20h18v2H3z"/></svg>
+            <svg (click)="showCanvas(0)" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48"><path fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" d="M24.288 42.47C13.91 42.412 5.498 34.2 5.498 24S13.91 5.53 24.288 5.53c6.602 0 12.328 3.64 15.76 8.41c1.63 2.265 3.133 5.465 2.131 10.278c-1 4.813-5.944 7.888-8.723 7.888H28.95c-3.896 0-4.265 3.667-2.635 5.396c1.53 1.623.41 4.982-2.028 4.968" stroke-width="1"/><path fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" d="M15.93 20.832a3.21 3.21 0 0 1-3.21 3.211h0a3.211 3.211 0 0 1 0-6.422h0a3.21 3.21 0 0 1 3.21 3.211m22.557 0a3.21 3.21 0 0 1-3.211 3.211h0a3.21 3.21 0 0 1-3.211-3.21h0a3.21 3.21 0 0 1 3.21-3.212h0a3.21 3.21 0 0 1 3.212 3.211m-6.043-8.215a3.211 3.211 0 0 1-6.422 0h0a3.21 3.21 0 0 1 3.211-3.211h0a3.21 3.21 0 0 1 3.211 3.21m-10.471.001a3.21 3.21 0 0 1-3.21 3.21h0a3.211 3.211 0 1 1 3.21-3.21" stroke-width="1"/></svg>
+
+            <div class="canvas" [ngClass]="canvas ? 'd-block' : 'd-none'">
+              <div class=" d-flex gap-1">
+                @for (item of colors; track $index) {
+                  <div class="canvas-colour" [style]="{'backgroundColor': item}" [ngClass]="item === noteBackground ? 'border border-light' : ''" (click)="pickColour(item)"></div>
+                }
+              </div>
+              <div class="d-flex gap-1">
+                @for (item of backgroundImages; track $index) {
+                  <div class="canvas-background" [style]="{'backgroundImage': `url(assets/${item})`}" style="background-size: cover;" (click)="pickBackground(item)"></div>
+                }
+
+              </div>
+
+
+            </div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.268 21a2 2 0 0 0 3.464 0m-10.47-5.674A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="grey" d="M18 14v-3h-3V9h3V6h2v3h3v2h-3v3zm-9-2q-1.65 0-2.825-1.175T5 8t1.175-2.825T9 4t2.825 1.175T13 8t-1.175 2.825T9 12m-8 8v-2.8q0-.85.438-1.562T2.6 14.55q1.55-.775 3.15-1.162T9 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T17 17.2V20zm2-2h12v-.8q0-.275-.137-.5t-.363-.35q-1.35-.675-2.725-1.012T9 15t-2.775.338T3.5 16.35q-.225.125-.363.35T3 17.2zm6-8q.825 0 1.413-.587T11 8t-.587-1.412T9 6t-1.412.588T7 8t.588 1.413T9 10m0 8"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 25 24"><path fill="grey" d="M9.145 6.935a1.625 1.625 0 0 0 0 3.25h.01a1.625 1.625 0 0 0 0-3.25z"/><path fill="grey" d="M3.75 5.5A2.25 2.25 0 0 1 6 3.25h13a2.25 2.25 0 0 1 2.25 2.25v13A2.25 2.25 0 0 1 19 20.75H6a2.25 2.25 0 0 1-2.25-2.25zM6 4.75a.75.75 0 0 0-.75.75v10.08l1.451-1.9a2.25 2.25 0 0 1 3.584.01L11.5 15.3a.75.75 0 0 0 1.293-.168l1.978-4.847c.667-1.635 2.872-1.9 3.906-.468l1.073 1.484V5.5a.75.75 0 0 0-.75-.75zM5.25 18.5c0 .414.336.75.75.75h13a.75.75 0 0 0 .75-.75v-4.64l-2.288-3.164a.75.75 0 0 0-1.302.156l-1.978 4.846c-.66 1.616-2.827 1.899-3.879.506l-1.215-1.61a.75.75 0 0 0-1.195-.003l-2.492 3.264a.8.8 0 0 1-.151.148z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="grey" d="M12 10.577q-.213 0-.357.143t-.143.357v4.2l-1.746-1.746q-.14-.14-.344-.15t-.364.15t-.16.354t.16.354l2.388 2.388q.243.242.566.242t.566-.242l2.388-2.388q.14-.141.15-.345t-.15-.363t-.354-.16t-.354.16L12.5 15.277v-4.2q0-.213-.143-.357T12 10.577m-7-2.77v10.578q0 .269.173.442t.443.173h12.769q.269 0 .442-.173t.173-.442V7.808zM5.77 20q-.672 0-1.221-.549T4 18.231V7.486q0-.292.093-.55t.28-.475l1.558-1.87q.217-.293.543-.442T7.173 4h9.616q.372 0 .708.149t.553.441l1.577 1.91q.187.217.28.485q.093.267.093.56V18.23q0 .671-.549 1.22t-1.22.549zM5.38 6.808H18.6L17.27 5.21q-.097-.096-.222-.153T16.788 5H7.192q-.134 0-.26.058t-.22.154zM12 13.404"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="grey" d="M11 6c0-.139 0-.209.008-.267a.85.85 0 0 1 .724-.724c.059-.008.128-.008.267-.008s.21 0 .267.008a.85.85 0 0 1 .724.724c.008.058.008.128.008.267s0 .209-.008.267a.85.85 0 0 1-.724.724c-.058.008-.128.008-.267.008s-.209 0-.267-.008a.85.85 0 0 1-.724-.724C11 6.209 11 6.139 11 6m0 6c0-.139 0-.209.008-.267a.85.85 0 0 1 .724-.724c.059-.008.128-.008.267-.008s.21 0 .267.008a.85.85 0 0 1 .724.724c.008.058.008.128.008.267s0 .209-.008.267a.85.85 0 0 1-.724.724c-.058.008-.128.008-.267.008s-.209 0-.267-.008a.85.85 0 0 1-.724-.724C11 12.209 11 12.139 11 12m0 5.7c-.008.058-.008.128-.008.267s0 .209.008.267a.85.85 0 0 0 .724.724c.058.008.128.008.267.008s.209 0 .267-.008a.85.85 0 0 0 .724-.724c.008-.058.008-.128.008-.267s0-.209-.008-.267a.85.85 0 0 0-.724-.724c-.058-.008-.128-.008-.267-.008s-.209 0-.267.008A.85.85 0 0 0 11 17.7"/></svg>
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="grey" d="M7.404 18v-1h7.254q1.556 0 2.65-1.067q1.096-1.067 1.096-2.606t-1.095-2.596q-1.096-1.058-2.651-1.058H6.916l2.965 2.965l-.708.708L5 9.173L9.173 5l.708.708l-2.965 2.965h7.742q1.963 0 3.355 1.354q1.39 1.354 1.39 3.3t-1.39 3.31T14.657 18z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="grey" d="M9.342 18q-1.963 0-3.355-1.364t-1.39-3.309t1.39-3.3Q7.38 8.673 9.343 8.673h7.743L14.12 5.708L14.828 5L19 9.173l-4.173 4.173l-.708-.707l2.966-2.966H9.342q-1.556 0-2.65 1.058q-1.096 1.058-1.096 2.596t1.095 2.606Q7.787 17 9.342 17h7.254v1z"/></svg>
+
+          </div>
+          <div class="close">
+            <span class="text-light fw-medium" style="cursor: pointer;" (click)="saveNote()">Close</span>
+          </div>
+         
+        </div>
+
+      </div>
+    }
+  </div>
+
+  <!-- Pinned Notes -->
+  @if (pinned.length !== 0) {
+    <div class="pinned row mt-3">
+      <div class="col-12">
+        <p class="pinned-title fw-bold" style="font-size: 14px;">PINNED</p>
+      </div>
+      @for (note of reversedPinned; track $index; let noteIndex = $index) {
+        <div class="col-12 col-md-3 col-sm-6 col-lg-2">
+          <div class="card note-card pinned-card" [style]="{'background-color': note.color}">
+            <div class="card-body">
+              <div class="d-flex justify-content-between ">
+                <h5 class="card-title" (click)="editNote(note)">{{ note.title }}</h5>
+                <svg style="cursor: pointer" xmlns="http://www.w3.org/2000/svg" (click)="unpin(note)" width="18" height="18" viewBox="0 0 24 24"><path fill="grey" d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2z"/></svg>
+              </div>
+              <p class="card-text" (click)="editNote(note)">{{ note?.note?.length < 100 ? note?.note : note?.note?.substring(0,200) + '...'  }}</p>  
+            </div>
+            <svg class="mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 2048 2048"><path fill="#000" d="M1837 557L768 1627l-557-558l90-90l467 466l979-978z"/></svg>
+
+            <div class="footer" >
+              <div class="footer-icons card-icons mt-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="grey" d="M15.246 14H8.754l-1.6 4H5l6-15h2l6 15h-2.154zm-.8-2L12 5.885L9.554 12zM3 20h18v2H3z"/></svg>
+                <svg (click)="showCanvas($index)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 48 48"><path fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" d="M24.288 42.47C13.91 42.412 5.498 34.2 5.498 24S13.91 5.53 24.288 5.53c6.602 0 12.328 3.64 15.76 8.41c1.63 2.265 3.133 5.465 2.131 10.278c-1 4.813-5.944 7.888-8.723 7.888H28.95c-3.896 0-4.265 3.667-2.635 5.396c1.53 1.623.41 4.982-2.028 4.968" stroke-width="1"/><path fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" d="M15.93 20.832a3.21 3.21 0 0 1-3.21 3.211h0a3.211 3.211 0 0 1 0-6.422h0a3.21 3.21 0 0 1 3.21 3.211m22.557 0a3.21 3.21 0 0 1-3.211 3.211h0a3.21 3.21 0 0 1-3.211-3.21h0a3.21 3.21 0 0 1 3.21-3.212h0a3.21 3.21 0 0 1 3.212 3.211m-6.043-8.215a3.211 3.211 0 0 1-6.422 0h0a3.21 3.21 0 0 1 3.211-3.211h0a3.21 3.21 0 0 1 3.211 3.21m-10.471.001a3.21 3.21 0 0 1-3.21 3.21h0a3.211 3.211 0 1 1 3.21-3.21" stroke-width="1"/></svg>
+
+                @if (activeCanvasIndex === $index) {
+                  <div class="canvas d-flex gap-1" [ngClass]="canvas ? 'd-block' : 'd-none'"  >
+                  @for (item of colors; track $index) {
+                    <div [style]="{'backgroundColor': item}" [ngClass]="item === noteBackground ? 'border border-light' : ''" (click)="pickColour(item)"></div>
+                  }
+                  </div>  
+                }
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.268 21a2 2 0 0 0 3.464 0m-10.47-5.674A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="grey" d="M18 14v-3h-3V9h3V6h2v3h3v2h-3v3zm-9-2q-1.65 0-2.825-1.175T5 8t1.175-2.825T9 4t2.825 1.175T13 8t-1.175 2.825T9 12m-8 8v-2.8q0-.85.438-1.562T2.6 14.55q1.55-.775 3.15-1.162T9 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T17 17.2V20zm2-2h12v-.8q0-.275-.137-.5t-.363-.35q-1.35-.675-2.725-1.012T9 15t-2.775.338T3.5 16.35q-.225.125-.363.35T3 17.2zm6-8q.825 0 1.413-.587T11 8t-.587-1.412T9 6t-1.412.588T7 8t.588 1.413T9 10m0 8"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 25 24"><path fill="grey" d="M9.145 6.935a1.625 1.625 0 0 0 0 3.25h.01a1.625 1.625 0 0 0 0-3.25z"/><path fill="grey" d="M3.75 5.5A2.25 2.25 0 0 1 6 3.25h13a2.25 2.25 0 0 1 2.25 2.25v13A2.25 2.25 0 0 1 19 20.75H6a2.25 2.25 0 0 1-2.25-2.25zM6 4.75a.75.75 0 0 0-.75.75v10.08l1.451-1.9a2.25 2.25 0 0 1 3.584.01L11.5 15.3a.75.75 0 0 0 1.293-.168l1.978-4.847c.667-1.635 2.872-1.9 3.906-.468l1.073 1.484V5.5a.75.75 0 0 0-.75-.75zM5.25 18.5c0 .414.336.75.75.75h13a.75.75 0 0 0 .75-.75v-4.64l-2.288-3.164a.75.75 0 0 0-1.302.156l-1.978 4.846c-.66 1.616-2.827 1.899-3.879.506l-1.215-1.61a.75.75 0 0 0-1.195-.003l-2.492 3.264a.8.8 0 0 1-.151.148z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="grey" d="M12 10.577q-.213 0-.357.143t-.143.357v4.2l-1.746-1.746q-.14-.14-.344-.15t-.364.15t-.16.354t.16.354l2.388 2.388q.243.242.566.242t.566-.242l2.388-2.388q.14-.141.15-.345t-.15-.363t-.354-.16t-.354.16L12.5 15.277v-4.2q0-.213-.143-.357T12 10.577m-7-2.77v10.578q0 .269.173.442t.443.173h12.769q.269 0 .442-.173t.173-.442V7.808zM5.77 20q-.672 0-1.221-.549T4 18.231V7.486q0-.292.093-.55t.28-.475l1.558-1.87q.217-.293.543-.442T7.173 4h9.616q.372 0 .708.149t.553.441l1.577 1.91q.187.217.28.485q.093.267.093.56V18.23q0 .671-.549 1.22t-1.22.549zM5.38 6.808H18.6L17.27 5.21q-.097-.096-.222-.153T16.788 5H7.192q-.134 0-.26.058t-.22.154zM12 13.404"/></svg>
+              
+
+                <svg (click)="showDropdown(note.id)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path  fill="grey" d="M11 6c0-.139 0-.209.008-.267a.85.85 0 0 1 .724-.724c.059-.008.128-.008.267-.008s.21 0 .267.008a.85.85 0 0 1 .724.724c.008.058.008.128.008.267s0 .209-.008.267a.85.85 0 0 1-.724.724c-.058.008-.128.008-.267.008s-.209 0-.267-.008a.85.85 0 0 1-.724-.724C11 6.209 11 6.139 11 6m0 6c0-.139 0-.209.008-.267a.85.85 0 0 1 .724-.724c.059-.008.128-.008.267-.008s.21 0 .267.008a.85.85 0 0 1 .724.724c.008.058.008.128.008.267s0 .209-.008.267a.85.85 0 0 1-.724.724c-.058.008-.128.008-.267.008s-.209 0-.267-.008a.85.85 0 0 1-.724-.724C11 12.209 11 12.139 11 12m0 5.7c-.008.058-.008.128-.008.267s0 .209.008.267a.85.85 0 0 0 .724.724c.058.008.128.008.267.008s.209 0 .267-.008a.85.85 0 0 0 .724-.724c.008-.058.008-.128.008-.267s0-.209-.008-.267a.85.85 0 0 0-.724-.724c-.058-.008-.128-.008-.267-.008s-.209 0-.267.008A.85.85 0 0 0 11 17.7"/></svg>
+
+                
+                <div *ngIf="activeDropdownIndex === note.id" class="dropdown shadow-md">
+                  <span (click)="deleteNote(note.id);">Delete note</span>
+                  <span>Add label</span>
+                  <span>Add drawing</span>
+                  <span>Make a copy</span>
+                  <span>Show checkboxes</span>
+                  <span>Copy to Google Docs</span>
+                  <span>Version history</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+    </div>
+  }
+
+  <!--Notes Display Area -->
+  <div class="display-area row">
+    <div class="col-12">
+      <p class="pinned-title fw-bold" style="font-size: 14px;">Others</p>
+    </div>
+    @for (columnNotes of columns; track $index; let colIndex= $index) {
+      <div class="col-12 col-md-3 col-sm-6 col-lg-2">
+        @for (note of columnNotes; track $index; let noteIndex =$index) {
+          <div class="card note-card" [style]="{'background-color': note.color, 'background-image': `url(assets/${note.background})`}" style="background-repeat: no-repeat; background-size: cover; background-position: center;" >
+            <div class="card-body" [routerLink]="['note', note.id]"
+          routerLinkActive="router-link-active">
+                <div class="d-flex justify-content-between ">
+                  <h5 class="card-title">{{ note.title }}</h5>
+                  <svg style="cursor: pointer" (click)="pin(note)" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="grey" d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2zm-7.2 2l1.2-1.2V4h4v8.8l1.2 1.2z"/></svg>
+                </div>
+                <p class="card-text">{{ note.note.length < 100 ? note.note : note.note.substring(0,200) + '...'  }}</p>  
+            </div>
+            <svg class="mark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 2048 2048"><path fill="#000" d="M1837 557L768 1627l-557-558l90-90l467 466l979-978z"/></svg>
+
+            <div class="footer" >
+              <div class="footer-icons card-icons mt-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="grey" d="M15.246 14H8.754l-1.6 4H5l6-15h2l6 15h-2.154zm-.8-2L12 5.885L9.554 12zM3 20h18v2H3z"/></svg>
+                <svg (click)="showCanvas(note)"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 48 48"><path fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" d="M24.288 42.47C13.91 42.412 5.498 34.2 5.498 24S13.91 5.53 24.288 5.53c6.602 0 12.328 3.64 15.76 8.41c1.63 2.265 3.133 5.465 2.131 10.278c-1 4.813-5.944 7.888-8.723 7.888H28.95c-3.896 0-4.265 3.667-2.635 5.396c1.53 1.623.41 4.982-2.028 4.968" stroke-width="1"/><path fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" d="M15.93 20.832a3.21 3.21 0 0 1-3.21 3.211h0a3.211 3.211 0 0 1 0-6.422h0a3.21 3.21 0 0 1 3.21 3.211m22.557 0a3.21 3.21 0 0 1-3.211 3.211h0a3.21 3.21 0 0 1-3.211-3.21h0a3.21 3.21 0 0 1 3.21-3.212h0a3.21 3.21 0 0 1 3.212 3.211m-6.043-8.215a3.211 3.211 0 0 1-6.422 0h0a3.21 3.21 0 0 1 3.211-3.211h0a3.21 3.21 0 0 1 3.211 3.21m-10.471.001a3.21 3.21 0 0 1-3.21 3.21h0a3.211 3.211 0 1 1 3.21-3.21" stroke-width="1"/></svg>
+
+                 @if (activeCanvasIndex === activeNoteIndex) {
+                  <div class="canvas d-flex gap-1" [ngClass]="canvas ? 'd-block' : 'd-none'"  >
+                  @for (item of colors; track $index) {
+                    <div [style]="{'backgroundColor': item}" [ngClass]="item === noteBackground ? 'border border-light' : ''" (click)="pickColour(item)"></div>
+                  }
+                  </div>  
+                }
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.268 21a2 2 0 0 0 3.464 0m-10.47-5.674A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="grey" d="M18 14v-3h-3V9h3V6h2v3h3v2h-3v3zm-9-2q-1.65 0-2.825-1.175T5 8t1.175-2.825T9 4t2.825 1.175T13 8t-1.175 2.825T9 12m-8 8v-2.8q0-.85.438-1.562T2.6 14.55q1.55-.775 3.15-1.162T9 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T17 17.2V20zm2-2h12v-.8q0-.275-.137-.5t-.363-.35q-1.35-.675-2.725-1.012T9 15t-2.775.338T3.5 16.35q-.225.125-.363.35T3 17.2zm6-8q.825 0 1.413-.587T11 8t-.587-1.412T9 6t-1.412.588T7 8t.588 1.413T9 10m0 8"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 25 24"><path fill="grey" d="M9.145 6.935a1.625 1.625 0 0 0 0 3.25h.01a1.625 1.625 0 0 0 0-3.25z"/><path fill="grey" d="M3.75 5.5A2.25 2.25 0 0 1 6 3.25h13a2.25 2.25 0 0 1 2.25 2.25v13A2.25 2.25 0 0 1 19 20.75H6a2.25 2.25 0 0 1-2.25-2.25zM6 4.75a.75.75 0 0 0-.75.75v10.08l1.451-1.9a2.25 2.25 0 0 1 3.584.01L11.5 15.3a.75.75 0 0 0 1.293-.168l1.978-4.847c.667-1.635 2.872-1.9 3.906-.468l1.073 1.484V5.5a.75.75 0 0 0-.75-.75zM5.25 18.5c0 .414.336.75.75.75h13a.75.75 0 0 0 .75-.75v-4.64l-2.288-3.164a.75.75 0 0 0-1.302.156l-1.978 4.846c-.66 1.616-2.827 1.899-3.879.506l-1.215-1.61a.75.75 0 0 0-1.195-.003l-2.492 3.264a.8.8 0 0 1-.151.148z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="grey" d="M12 10.577q-.213 0-.357.143t-.143.357v4.2l-1.746-1.746q-.14-.14-.344-.15t-.364.15t-.16.354t.16.354l2.388 2.388q.243.242.566.242t.566-.242l2.388-2.388q.14-.141.15-.345t-.15-.363t-.354-.16t-.354.16L12.5 15.277v-4.2q0-.213-.143-.357T12 10.577m-7-2.77v10.578q0 .269.173.442t.443.173h12.769q.269 0 .442-.173t.173-.442V7.808zM5.77 20q-.672 0-1.221-.549T4 18.231V7.486q0-.292.093-.55t.28-.475l1.558-1.87q.217-.293.543-.442T7.173 4h9.616q.372 0 .708.149t.553.441l1.577 1.91q.187.217.28.485q.093.267.093.56V18.23q0 .671-.549 1.22t-1.22.549zM5.38 6.808H18.6L17.27 5.21q-.097-.096-.222-.153T16.788 5H7.192q-.134 0-.26.058t-.22.154zM12 13.404"/></svg>
+              
+
+                <svg (click)="showDropdown(note.id)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path  fill="grey" d="M11 6c0-.139 0-.209.008-.267a.85.85 0 0 1 .724-.724c.059-.008.128-.008.267-.008s.21 0 .267.008a.85.85 0 0 1 .724.724c.008.058.008.128.008.267s0 .209-.008.267a.85.85 0 0 1-.724.724c-.058.008-.128.008-.267.008s-.209 0-.267-.008a.85.85 0 0 1-.724-.724C11 6.209 11 6.139 11 6m0 6c0-.139 0-.209.008-.267a.85.85 0 0 1 .724-.724c.059-.008.128-.008.267-.008s.21 0 .267.008a.85.85 0 0 1 .724.724c.008.058.008.128.008.267s0 .209-.008.267a.85.85 0 0 1-.724.724c-.058.008-.128.008-.267.008s-.209 0-.267-.008a.85.85 0 0 1-.724-.724C11 12.209 11 12.139 11 12m0 5.7c-.008.058-.008.128-.008.267s0 .209.008.267a.85.85 0 0 0 .724.724c.058.008.128.008.267.008s.209 0 .267-.008a.85.85 0 0 0 .724-.724c.008-.058.008-.128.008-.267s0-.209-.008-.267a.85.85 0 0 0-.724-.724c-.058-.008-.128-.008-.267-.008s-.209 0-.267.008A.85.85 0 0 0 11 17.7"/></svg>
+
+                
+                <div *ngIf="activeDropdownIndex === note.id" class="dropdown shadow-md">
+                  <span (click)="deleteNote(note.id);">Delete note</span>
+                  <span>Add label</span>
+                  <span>Add drawing</span>
+                  <span>Make a copy</span>
+                  <span>Show checkboxes</span>
+                  <span>Copy to Google Docs</span>
+                  <span>Version history</span>
+
+                </div>
+              
+
+              </div>
+            </div>
+          </div>
+  
+        }
+      </div>
+    }
+  </div>
+
+</div>
