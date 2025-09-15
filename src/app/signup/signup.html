@@ -1,0 +1,42 @@
+<div class="signup">
+    <form class="card px-2 py-3 col-4 mx-auto" [formGroup]="signupForm">
+        <p class="fst-italic fs-6 text-center">Welcome to Keep Notes</p>
+
+        <div class="form-group mb-2">
+            <label for="">First Name</label>
+            <input type="text" class="form-control" formControlName="first_name">
+            @if (signupForm.get('first_name')?.errors) {
+                <p class="text-danger" *ngIf="signupForm.get('first_name')?.hasError('minlength')">First name cannot be less than 5 characters</p>
+            }
+        </div>
+        <div class="form-group mb-2">
+            <label for="">Last Name</label>
+            <input type="text" class="form-control" formControlName="last_name">
+             @if (signupForm.get('last_name')?.errors && signupForm.get('last_name')?.touched) {
+                <p class="text-danger" *ngIf="signupForm.get('last_name')?.hasError('required')">Last name cannot be empty</p>
+            }
+        </div>
+         <div class="form-group mb-2">
+            <label for="">Email</label>
+            <input type="email" class="form-control" formControlName="email">
+             @if (signupForm.get('email')?.errors && signupForm.get('email')?.dirty)  {
+                <p class="text-danger" *ngIf="signupForm.get('email')?.hasError('required')">Email cannot be empty</p>
+                <p class="text-danger" *ngIf="signupForm.get('email')?.hasError('email')">Email address must be valid</p>
+
+            }
+        </div>
+         <div class="form-group mb-4">
+            <label for="">Password</label>
+            <input type="password" class="form-control" formControlName="password">
+            @if (signupForm.get('password')?.errors) {
+                
+                <p class="text-danger" *ngIf="signupForm.get('password')?.hasError('pattern')">Password must containt at least 1 uppercase, 1 lowercase, 1 special character, a number and must not be less than 8 characters</p>
+
+            }
+        </div>
+
+         <div class="form-group mb-2">
+            <button class="btn border border-secondary w-100 text-secondary" (click)="register()" >Register</button>
+        </div>
+    </form>
+</div>
